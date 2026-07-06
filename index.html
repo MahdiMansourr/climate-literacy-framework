@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Climate Literacy Framework Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --paper:#FAF9F5; --ink:#20211D; --ink-soft:#5B5C55; --line:#DEDCD2; --card:#FFFFFF;
+    --c1-bg:#EAF2F8; --c1-line:#B9D7E9; --c1-mid:#1B6FA8; --c1-dark:#0B3A57;
+    --c2-bg:#EEEEEC; --c2-line:#C9CAC3; --c2-mid:#5B6259; --c2-dark:#2C312B;
+    --c3-bg:#EFF4E6; --c3-line:#C6D8AE; --c3-mid:#5C7A3D; --c3-dark:#2E3D1F;
+    --c4-bg:#FBF1E1; --c4-line:#EAC793; --c4-mid:#B96F2C; --c4-dark:#6B3F1C;
+    --u-bg:#F3EDF6; --u-line:#D9C7E3; --u-mid:#7A4C97; --u-dark:#432955;
+    --map-bg:#FDF0EC; --map-line:#F0C9B9; --map-mid:#C05A34; --map-dark:#6B2E18;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.6; font-size:16px; padding:0 0 4rem;}
+  .wrap{max-width:1000px; margin:0 auto; padding:0 30px;}
+  header.top{padding:44px 0 0; border-bottom:1px solid var(--line);}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);}
+  h1{font-family:'Source Serif 4',serif; font-weight:600; font-size:40px; margin:0 0 6px; letter-spacing:-.015em; line-height:1.15;}
+  .sub{color:var(--ink-soft); font-size:14px; max-width:680px;}
+
+  .tabs{display:flex; gap:4px; margin-top:28px;}
+  .tabbtn{padding:12px 20px; border:1px solid var(--line); border-bottom:none; background:var(--paper); border-radius:8px 8px 0 0; font-family:'Inter'; font-size:14.5px; font-weight:500; cursor:pointer; color:var(--ink-soft); position:relative; top:1px;}
+  .tabbtn.active{background:var(--card); color:var(--ink); border-color:var(--line); border-bottom:1px solid var(--card);}
+  .tabbtn .badge{font-family:'IBM Plex Mono',monospace; font-size:9.5px; margin-left:6px; padding:1px 6px; border-radius:10px; background:var(--line); color:var(--ink-soft);}
+
+  .panel{display:none; padding-top:26px;}
+  .panel.active{display:block;}
+
+  .controls{display:flex; gap:10px; align-items:center; margin-bottom:18px; flex-wrap:wrap;}
+  #search{flex:1; min-width:220px; padding:10px 14px; border:1px solid var(--line); border-radius:8px; font-size:14px; font-family:inherit; background:var(--card);}
+  #search:focus{outline:none; border-color:var(--ink-soft);}
+  #usearch{flex:1; min-width:220px; padding:10px 14px; border:1px solid var(--line); border-radius:8px; font-size:14px; font-family:inherit; background:var(--card);}
+  #usearch:focus{outline:none; border-color:var(--ink-soft);}
+  button.tool{padding:9px 14px; border:1px solid var(--line); background:var(--card); border-radius:8px; font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; color:var(--ink);}
+  button.tool:hover{background:var(--paper); border-color:var(--ink-soft);}
+
+  .legend{display:flex; gap:18px; margin:14px 0 0; flex-wrap:wrap; font-size:12.5px; color:var(--ink-soft);}
+  .legend b{color:var(--ink); font-weight:600;}
+
+  .compass{display:flex; justify-content:center; margin:24px 0 6px;}
+  .compass svg{cursor:pointer;}
+  .quad-legend{display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:28px;}
+  .quad-btn{border:1px solid var(--line); background:var(--card); border-radius:20px; padding:6px 13px; font-size:12.5px; cursor:pointer; font-family:'Inter'; display:flex; align-items:center; gap:7px; color:var(--ink);}
+  .quad-btn .dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  .quad-btn.active{border-color:var(--ink); font-weight:500;}
+
+  section.comp{margin-bottom:8px; border-top:3px solid var(--c-mid); border-radius:2px; padding-top:22px;}
+  section.comp.c1{--c-bg:var(--c1-bg); --c-line:var(--c1-line); --c-mid:var(--c1-mid); --c-dark:var(--c1-dark);}
+  section.comp.c2{--c-bg:var(--c2-bg); --c-line:var(--c2-line); --c-mid:var(--c2-mid); --c-dark:var(--c2-dark);}
+  section.comp.c3{--c-bg:var(--c3-bg); --c-line:var(--c3-line); --c-mid:var(--c3-mid); --c-dark:var(--c3-dark);}
+  section.comp.c4{--c-bg:var(--c4-bg); --c-line:var(--c4-line); --c-mid:var(--c4-mid); --c-dark:var(--c4-dark);}
+  section.comp.uc{--c-bg:var(--u-bg); --c-line:var(--u-line); --c-mid:var(--u-mid); --c-dark:var(--u-dark);}
+
+  .comp-head{display:flex; align-items:baseline; gap:12px; margin-bottom:8px;}
+  .comp-num{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--c-dark); background:var(--c-bg); border:1px solid var(--c-line); padding:2px 8px; border-radius:20px;}
+  .comp-title{font-family:'Source Serif 4',serif; font-size:23px; font-weight:600; color:var(--c-dark);}
+  .comp-pending{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--map-mid); background:var(--map-bg); border:1px solid var(--map-line); padding:2px 8px; border-radius:20px;}
+  .comp-intro{color:var(--ink-soft); font-size:14.5px; max-width:780px; margin:8px 0 24px; cursor:pointer; line-height:1.55;}
+  .comp-intro.collapsed{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+  .comp-intro .more{color:var(--c-mid); font-weight:500; white-space:nowrap;}
+  .topic-list-pending{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px;}
+  .topic-pill-pending{font-size:12px; color:var(--ink-soft); background:var(--c-bg); border:1px solid var(--c-line); padding:5px 11px; border-radius:20px;}
+
+  .sub{border:1px solid var(--line); border-left:4px solid var(--c-mid); border-radius:8px; margin-bottom:14px; background:var(--card); overflow:hidden;}
+  .sub-head{display:flex; align-items:center; justify-content:space-between; padding:14px 18px; cursor:pointer; gap:14px;}
+  .sub-head:hover{background:var(--c-bg);}
+  .sub-title-row{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .sub-code{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--c-dark); font-weight:500;}
+  .sub-title{font-weight:500; font-size:16.5px;}
+  .chev{color:var(--ink-soft); font-size:13px; transition:transform .15s;}
+  .sub.open .chev{transform:rotate(90deg);}
+  .sub-body{max-height:0; overflow:hidden;}
+  .sub.open .sub-body{max-height:none;}
+  .sub-body-inner{padding:0 18px 20px;}
+  .sub-def{font-size:14.5px; color:var(--ink-soft); margin:0 0 16px; border-top:1px solid var(--line); padding-top:14px; line-height:1.55;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px;}
+  .chip{font-size:11.5px; font-family:'IBM Plex Mono',monospace; padding:3px 9px; border-radius:20px; cursor:pointer; border:1px solid var(--u-line); background:var(--u-bg); color:var(--u-dark);}
+  .chip:hover{border-color:var(--u-mid);}
+  .chip.oecd{border-color:var(--c1-line); background:var(--c1-bg); color:var(--c1-dark);}
+
+  .levels{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+  .level{background:var(--c-bg); border:1px solid var(--c-line); border-radius:8px; padding:12px 13px;}
+  .level-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--c-dark); margin-bottom:8px; font-weight:500;}
+  .level-desc{font-size:14px; margin-bottom:10px; line-height:1.5;}
+  .level-ex{font-size:12.8px; color:var(--ink-soft); border-top:1px dashed var(--c-line); padding-top:8px; font-style:italic; line-height:1.5;}
+  .level-ex b{font-style:normal; color:var(--c-dark); font-weight:500;}
+
+  .no-match{text-align:center; color:var(--ink-soft); padding:60px 0; font-size:14px;}
+  mark{background:#FFE9A8; padding:0 1px; border-radius:2px;}
+
+  .bandbar{display:flex; gap:6px; margin:2px 0 16px; flex-wrap:wrap;}
+  .bandbtn{font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:20px; border:1px solid var(--u-line); background:var(--card); color:var(--ink-soft); cursor:pointer;}
+  .bandbtn.active{background:var(--u-mid); color:#fff; border-color:var(--u-mid); font-weight:500;}
+  .keyidea{font-size:14px; font-style:italic; color:var(--u-dark); background:var(--u-bg); border:1px solid var(--u-line); border-radius:8px; padding:11px 14px; margin-bottom:14px; line-height:1.5;}
+  .verify-note{font-size:13px; color:var(--map-dark); background:var(--map-bg); border:1px solid var(--map-line); border-radius:8px; padding:10px 13px;}
+  .domains{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+  .domain{background:var(--u-bg); border:1px solid var(--u-line); border-radius:8px; padding:13px 14px;}
+  .domain-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--u-dark); margin-bottom:9px; font-weight:500;}
+  .domain ul{margin:0; padding-left:16px; font-size:13.4px; line-height:1.5;}
+  .domain li{margin-bottom:8px;}
+
+  table.maptable{width:100%; border-collapse:collapse; font-size:14px; margin-top:6px;}
+  table.maptable th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); border-bottom:1px solid var(--line); padding:8px 10px;}
+  table.maptable td{padding:12px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.maptable tr:hover td{background:var(--paper);}
+  .map-note{font-size:12.5px; color:var(--ink-soft); background:var(--map-bg); border:1px solid var(--map-line); border-radius:8px; padding:10px 13px; margin-bottom:20px;}
+  .taglist{display:flex; flex-wrap:wrap; gap:6px;}
+  .tag-oecd{font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 8px; border-radius:20px; background:var(--c1-bg); color:var(--c1-dark); border:1px solid var(--c1-line);}
+  .tag-unesco{font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 8px; border-radius:20px; background:var(--u-bg); color:var(--u-dark); border:1px solid var(--u-line);}
+  .tag-pending{font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 8px; border-radius:20px; background:var(--map-bg); color:var(--map-dark); border:1px solid var(--map-line);}
+
+  .panel-intro{color:var(--ink-soft); font-size:15.5px; max-width:760px; margin:0 0 22px; line-height:1.55;}
+  .info-tip{position:relative; display:inline-flex; align-items:center; cursor:help; color:var(--u-mid); margin-left:2px; vertical-align:middle;}
+  .info-tip i{font-size:16px;}
+  .info-pop{position:absolute; left:50%; top:calc(100% + 8px); transform:translateX(-50%); width:320px; max-width:78vw; background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:11px 13px; font-size:12.5px; line-height:1.5; box-shadow:0 4px 14px rgba(0,0,0,.1); opacity:0; visibility:hidden; transition:opacity .12s; z-index:20; font-style:normal;}
+  .info-tip:hover .info-pop, .info-tip:focus .info-pop, .info-tip:focus-within .info-pop{opacity:1; visibility:visible;}
+  .info-pop::before{content:""; position:absolute; bottom:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-bottom-color:var(--line);}
+
+  @media print{
+    body{padding:0; font-size:11px;}
+    .controls,.compass,.quad-legend,.tabs{display:none;}
+    .panel{display:block !important;}
+    .sub-body{max-height:none !important;}
+    .sub, section.comp{page-break-inside:avoid;}
+    .levels,.domains{grid-template-columns:repeat(3,1fr);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Climate literacy framework reference</h1>
+    <div class="tabs">
+      <div class="tabbtn active" data-tab="oecd">OECD framework</div>
+      <div class="tabbtn" data-tab="unesco">UNESCO GCG <span class="badge">6 of 6</span></div>
+      <div class="tabbtn" data-tab="mapping">Mapping</div>
+    </div>
+  </header>
+
+  <!-- OECD PANEL -->
+  <div class="panel active" id="panel-oecd">
+    <div class="panel-intro">The Climate Literacy Framework developed by OECD consists of four main competencies and twelve sub-competencies. Each sub-competency has four proficiency levels.</div>
+    <div class="controls">
+      <input id="search" type="text" placeholder="Search wording, code (e.g. 2.2), or keyword…">
+      <button class="tool" id="expandAllO">Expand all</button>
+      <button class="tool" id="collapseAllO">Collapse all</button>
+      <button class="tool" id="printBtn">Print / save PDF</button>
+    </div>
+    <div class="legend">
+      <span><b>L1</b> Basic</span><span><b>L2</b> Intermediate</span><span><b>L3</b> Proficient</span><span><b>L4</b> Advanced</span>
+    </div>
+    <div class="compass">
+      <svg width="220" height="220" viewBox="0 0 230 230" role="img" aria-label="Four competencies of climate literacy">
+        <circle cx="115" cy="115" r="108" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <path d="M115,115 L115,7 A108,108 0 0 1 223,115 Z" fill="var(--c1-bg)" stroke="var(--c1-line)" data-q="1" class="wedge"/>
+        <path d="M115,115 L223,115 A108,108 0 0 1 115,223 Z" fill="var(--c2-bg)" stroke="var(--c2-line)" data-q="2" class="wedge"/>
+        <path d="M115,115 L115,223 A108,108 0 0 1 7,115 Z" fill="var(--c3-bg)" stroke="var(--c3-line)" data-q="3" class="wedge"/>
+        <path d="M115,115 L7,115 A108,108 0 0 1 115,7 Z" fill="var(--c4-bg)" stroke="var(--c4-line)" data-q="4" class="wedge"/>
+        <text x="160" y="55" text-anchor="middle" font-size="11" fill="var(--c1-dark)" font-weight="500">C1</text>
+        <text x="175" y="160" text-anchor="middle" font-size="11" fill="var(--c2-dark)" font-weight="500">C2</text>
+        <text x="70" y="180" text-anchor="middle" font-size="11" fill="var(--c3-dark)" font-weight="500">C3</text>
+        <text x="55" y="70" text-anchor="middle" font-size="11" fill="var(--c4-dark)" font-weight="500">C4</text>
+        <circle cx="115" cy="115" r="34" fill="var(--paper)" stroke="var(--line)"/>
+        <text x="115" y="112" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">climate</text>
+        <text x="115" y="123" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">literacy</text>
+      </svg>
+    </div>
+    <div class="quad-legend" id="quadLegend">
+      <div class="quad-btn active" data-q="all"><span class="dot" style="background:var(--ink-soft)"></span>All competencies</div>
+      <div class="quad-btn" data-q="1"><span class="dot" style="background:var(--c1-mid)"></span>C1 Understand &amp; explain</div>
+      <div class="quad-btn" data-q="2"><span class="dot" style="background:var(--c2-mid)"></span>C2 Apply evidence-based reasoning</div>
+      <div class="quad-btn" data-q="3"><span class="dot" style="background:var(--c3-mid)"></span>C3 Evaluate arguments &amp; perspectives</div>
+      <div class="quad-btn" data-q="4"><span class="dot" style="background:var(--c4-mid)"></span>C4 Exercise agency</div>
+    </div>
+    <div id="content-oecd"></div>
+    <div class="no-match" id="noMatchO" style="display:none;">No matches. Try a different term or code.</div>
+  </div>
+
+  <!-- UNESCO PANEL -->
+  <div class="panel" id="panel-unesco">
+    <div class="panel-intro">UNESCO Greening Curriculum Guidance — six key concepts and their topics, with learning outcomes by age band. <span class="info-tip" tabindex="0" aria-label="About the age bands and coverage"><i class="ti ti-info-circle"></i><span class="info-pop">All 6 key concepts and their topics are included. The 13–15 age band shows the full cognitive / social-emotional / behavioural outcomes in exact wording; the other four bands show the source KEY IDEA line as progression context. A small number of 13–15 cells are marked “to be verified” rather than filled with unverified text.</span></span></div>
+    <div class="controls">
+      <input id="usearch" type="text" placeholder="Search UNESCO wording, topic code, or keyword…">
+      <button class="tool" id="expandAllU">Expand all</button>
+      <button class="tool" id="collapseAllU">Collapse all</button>
+    </div>
+    <div id="content-unesco"></div>
+    <div class="no-match" id="noMatchU" style="display:none;">No matches. Try a different term or code.</div>
+  </div>
+
+  <!-- MAPPING PANEL -->
+  <div class="panel" id="panel-mapping">
+    <div class="panel-intro">Cross-reference between the two frameworks. <span class="info-tip" tabindex="0" aria-label="About the mapping"><i class="ti ti-info-circle"></i><span class="info-pop">These are suggested connections, not one-to-one equivalences; a UNESCO topic may support several OECD sub-competencies. Click any tag to jump to that item in its own tab.</span></span></div>
+    <table class="maptable">
+      <tr><th style="width:22%">OECD sub-competency</th><th>Related UNESCO GCG topics</th><th style="width:34%">Why they connect</th></tr>
+      <tbody id="mapRows"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+const OECD = [
+{ id:1, class:"c1", title:"Understand and explain human-induced climate change",
+  intro:"From rising sea levels to shifting weather patterns, and from global policy debates to local community decisions, climate-related challenges affect the health, livelihoods, infrastructure, and future opportunities of humans and all species. This competency provides the foundation for climate literacy, encompassing the social, economic, ethical, political, cultural, and civic dimensions of human-induced climate change, as well as the strategies proposed to address it at all levels.",
+  subs:[
+    {code:"1.1", title:"Understand and explain the climate and other Earth systems",
+     def:"This requires recognizing the climate system as interacting with a complex and dynamic network of interconnected components, including the atmosphere, hydrosphere, biosphere, and cryosphere. Students learn how these systems interact to create the conditions that sustain life on Earth, and how climate change disrupts these systems unevenly across regions.",
+     levels:[
+      {d:"Students can identify the interconnection between the climate system and another Earth system and select the correct description or explanation for observed phenomena.", e:"Students identify that higher-than-normal rainfall in upland areas can cause flooding in low-lying regions."},
+      {d:"Students can describe the interconnection between the climate system and other Earth systems, and the existence of multi-causal relations and loops.", e:"Students describe how changes in land use interact with rainfall to increase the risk of flooding in lowlands."},
+      {d:"Based on the understanding they have developed about the interactions between climate and other Earth systems, students can explain the disruption of one or more of these systems.", e:"Students explain how sea ice-albedo-radiation feedback connects to warming in ice covered regions."},
+      {d:"Students can evaluate how changes in climate, Earth, and biological systems interact in complex ways, including feedback loops that amplify or reduce impacts.", e:"Students explain how deforestation in the Amazon connects with global climate impacts and evaluate how these ecological changes interact with human systems."}
+     ]},
+    {code:"1.2", title:"Understand and explain the interactions among humans, the climate and other Earth systems",
+     def:"This component involves an exploration of how human actions and lifestyles contribute to climate change, and how different groups experience these impacts unevenly due to existing inequalities and vulnerabilities, making climate change both a scientific and a social justice issue.",
+     levels:[
+      {d:"They can identify categories of human activities that lead to climate change.", e:"Students identify that using a car or eating beef contributes to climate change."},
+      {d:"They can describe how human activities across different sectors influence the climate system.", e:"Students understand that driving cars powered by fossil fuels releases carbon dioxide via combustion."},
+      {d:"They can explain what human activities have the largest impact on climate change and evaluate differing impacts depending on economic, social, or environmental status.", e:"Students analyze how changes in the climate system affect people's health by influencing agriculture, water and sanitation."},
+      {d:"They can evaluate how climate change impacts on ecosystems and human communities reinforce each other, reason with different scenarios, and consider which groups are most exposed, vulnerable or resilient.", e:"Students analyze how expanding crops cultivation increases methane emissions while also supporting food security, and evaluate trade-offs."}
+     ]},
+    {code:"1.3", title:"Understand and explain ways to reduce human impact on Earth systems (mitigate and adapt)",
+     def:"Students learn about strategies to mitigate and adapt to human-induced climate change at all levels, including the roles of governance systems, laws, norms, and institutions, and critically assess the effectiveness of these strategies.",
+     levels:[
+      {d:"They know that mitigation and adaptation are 2 types of strategies to reduce human impact on climate change.", e:""},
+      {d:"They can identify strategies for mitigation or adaptation at the individual and collective level.", e:""},
+      {d:"Students can evaluate the effectiveness of specific strategies for mitigation and adaptation.", e:""},
+      {d:"Students can assess how different adaptation and mitigation strategies interact with Earth systems, recognising both benefits and unintended consequences.", e:""}
+     ]}
+  ]
+},
+{ id:2, class:"c2", title:"Apply evidence-based and systems reasoning to climate challenges",
+  intro:"This competency enables learners to interpret climate scenarios, assess the reliability of claims based on data, and apply evidence-based reasoning and systems thinking to personal, community and policy decisions related to climate change.",
+  subs:[
+    {code:"2.1", title:"Identify reliable evidence on human-induced climate change",
+     def:"Students must be able to justify relevance, reliability, and accuracy of evidence based on understanding how such knowledge is produced, including how models and data are used to draw causal inferences.",
+     levels:[
+      {d:"Students can recognise basic markers that an argument related to climate change is factual, rather than just an opinion.", e:"When reading a post on a recent heat wave, students can identify whether it aims to describe the event factually."},
+      {d:"Students understand that reliable evidence comes from rigorous methods of investigation and can identify reliable sources based on indicators of trustworthiness.", e:"Students can explain why scientists use calibrated/published temperature records from many stations rather than raw data from one location."},
+      {d:"Students can explain how scientists build explanations by using large datasets and simulations, recognise that uncertainty exists but doesn't mean we know nothing, and compare arguments based on soundness.", e:"Students compare a peer-reviewed claim with a blog post and explain why the scientific claim is more trustworthy."},
+      {d:"Students independently design inquiries with appropriate methods, assess confidence in conclusions, and explain how climate science advances through continuous revision.", e:"Students define a data collection strategy to analyse whether earlier tree-blooming is linked to warming, stating confidence level."}
+     ]},
+    {code:"2.2", title:"Investigate climate issues using models and data",
+     def:"Students apply data literacy and scientific reasoning skills to investigate global and local climate issues using models, data collection, and evidence-based projections.",
+     levels:[
+      {d:"They can describe in basic terms climate change-related models, and interpret simple graphic representations of data.", e:""},
+      {d:"They use simple models, graphs, datasets or diagrams to answer questions and conduct simple investigations.", e:""},
+      {d:"They investigate a local or global climate issue using available datasets and models, and assess uncertainty.", e:""},
+      {d:"They use simulations and models to explore scenarios and critique decisions regarding climate action.", e:""}
+     ]},
+    {code:"2.3", title:"Integrate diverse sources of evidence to inform decision-making",
+     def:"Students value evidence from different, interdisciplinary sources and diverse methods, including indigenous knowledge, and reconcile these sources with scientific knowledge.",
+     levels:[
+      {d:"They know that understanding climate change requires interdisciplinary knowledge and a combination of research methods.", e:"They know that reduced crop yields can have multiple causes requiring different research methods."},
+      {d:"They can review evidence from different sources and compare explanations.", e:"They can compare farmers' observations with data on crop yields and environmental changes."},
+      {d:"Students connect evidence from different disciplines and sources to inform decision making.", e:"Students refer to scientific research, local knowledge, and historical data about agriculture in the region."},
+      {d:"They integrate scientific, local and experiential knowledge to produce well-justified, actionable conclusions that consider uncertainty and trade-offs.", e:"They combine model results, community testimony and indigenous knowledge to recommend feasible adaptation options."}
+     ]}
+  ]
+},
+{ id:3, class:"c3", title:"Evaluate arguments and perspectives on climate change",
+  intro:"Because interpretations of scientific evidence are often entangled with ethical, political, and emotional considerations, this competency equips students to evaluate the quality of media and information, engage critically and respectfully with diverse viewpoints, and communicate effectively with different audiences.",
+  subs:[
+    {code:"3.1", title:"Identify and evaluate different types of claims about climate change",
+     def:"Students distinguish between ethical, factual, political and emotional claims and evaluate their credibility, including how information can be deliberately framed or manipulated.",
+     levels:[
+      {d:"Students can notice that claims about climate change can be of different types and identify them.", e:'Students recognise that "red meat has a bigger carbon footprint than beans" is factual, while "it\'s wrong to kill animals for food" is ethical.'},
+      {d:"Students can ask questions about where information comes from and whether the source seems reliable, avoiding strong positions when they lack sufficient understanding.", e:'When told "flying is worse than eating meat," they ask "where did you read that?" and check a reliable source.'},
+      {d:"Students can examine complex or controversial claims, seek reliable sources, value expert consensus, and spot strategies typical of misinformation.", e:""},
+      {d:"Students can critically evaluate complex or contentious claims by synthesizing diverse evidence and identifying nuanced forms of bias or manipulation.", e:""}
+     ]},
+    {code:"3.2", title:"Identify and evaluate diverse perspectives, values and worldviews on climate change",
+     def:"Students analyse and reflect on value-based positions and belief systems, recognizing that different communities may hold divergent but valid perspectives shaped by worldviews and cultural narratives.",
+     levels:[
+      {d:"They recognise that people may think differently about climate issues, because of their context.", e:"Students recognise that some people are prone to changing dietary habits while others prefer other solutions."},
+      {d:"They can explain why people might hold different views about climate issues.", e:"They can explain why farmers relying on animal farming are less prone to envisage dietary changes."},
+      {d:"They can explain how personal backgrounds shape different positions and reflect on their own cognitive and emotional biases.", e:"Students reflect on their own dietary preferences and recognize how culture and economics shape them."},
+      {d:"Students can critically evaluate how cultural narratives, ethical frameworks, and emotional responses shape diverse perspectives, and adjust their own conclusions accordingly.", e:"Students engage with the perspectives of students, parents, farmers, and health experts on a school canteen debate."}
+     ]},
+    {code:"3.3", title:"Construct arguments and communicate on climate change",
+     def:'Students construct messages that are clear, credible, and adapted to different audiences and media, engaging in "discourse care" and grounding arguments in evidence.',
+     levels:[
+      {d:"They can share a simple message about a response to climate change.", e:"They produce a social media post about fast fashion's climate impact."},
+      {d:"They can construct short, well-reasoned arguments using evidence and share them with a familiar public.", e:"They make a poster for classmates selecting arguments from trusted sources."},
+      {d:"They can produce reasoned, effective arguments or presentations, adapting to different audiences and media.", e:"They produce a leaflet inviting schoolmates to consider both pros and cons."},
+      {d:"They can produce sophisticated communication products that inform, persuade, and motivate decisions across audiences.", e:"They create a social media campaign and a formal letter to authorities, adapting tone and evidence to each."}
+     ]}
+  ]
+},
+{ id:4, class:"c4", title:"Exercise agency for climate futures",
+  intro:"This competency supports learners in recognising the conditions and consequences of their actions, navigating uncertainty, and building the capacity to collaborate with others in imagining desirable sustainable futures and designing solutions.",
+  subs:[
+    {code:"4.1", title:"Envision just and sustainable futures",
+     def:'This involves imagining alternative futures shaped by social and ecological justice, using futures thinking skills to question assumptions about what is "normal" or "inevitable," and to cultivate constructive hope.',
+     levels:[
+      {d:"Students can imagine desirable futures where climate change related impacts are reduced.", e:"Students imagine a cooler schoolyard if trees were planted."},
+      {d:"Students can compare alternative desirable climate futures with scenarios of climate impacts and connect them to everyday choices.", e:"Students imagine two futures for their town, one with more heatwaves and one with active transport."},
+      {d:"Students can envision climate futures that integrate local, regional, and global impacts, considering fairness and justice.", e:"Students envision a future where green infrastructure protects all neighbourhoods fairly."},
+      {d:"Students can use multi-disciplinary knowledge to imagine complex climate futures and propose just and effective pathways.", e:"Students describe a vision for their region linking emissions reduction with fair job opportunities."}
+     ]},
+    {code:"4.2", title:"Formulate strategies and plan projects",
+     def:"Students design intentional, evidence-informed strategies for action, learning to put in place coherent plans that take into account resources, constraints, and cost/benefit trade-offs.",
+     levels:[
+      {d:"They can propose or adapt climate-related actions that are feasible at their level, using familiar resources and spaces.", e:"They propose a classroom campaign to reduce energy consumption."},
+      {d:"They can plan or adapt climate initiatives, identifying roles, resources, and potential challenges.", e:"They plan a school campaign to start a pedibus."},
+      {d:"They can plan or adapt projects, mobilise peers or experts, anticipate challenges, and communicate their plans effectively.", e:"They develop an energy-reduction plan anticipating seasonal challenges and including a communication plan."},
+      {d:"They can plan projects that coordinate multiple actors, allocate resources strategically, and mobilise support through persuasive communication.", e:"They develop a school climate-neutrality project consulting staff, students, and local authorities."}
+     ]},
+    {code:"4.3", title:"Reflect critically on projects and solutions",
+     def:"Students analyse the effectiveness, trade-offs and unintended consequences of their own and others' initiatives, deciding when to sustain, scale up, or redirect action.",
+     levels:[
+      {d:"They can identify challenges in their own and other people's projects.", e:'Students can explain what will be "easy" or "difficult" in an electricity-saving campaign.'},
+      {d:"They can identify challenges in projects and suggest improvements.", e:"Students propose improvements to overcome difficulties in the campaign."},
+      {d:"They can evaluate social and environmental impacts of their decisions, seek feedback from diverse perspectives, and adjust strategies accordingly.", e:"Students notice disengaged groups in a school pilot and propose new approaches to engage them."},
+      {d:"They can evaluate intended and unintended impacts, incorporate diverse perspectives, and adapt strategies to achieve systemic change.", e:"Students evaluate successes and setbacks of an existing project and propose adaptations for durable impact."}
+     ]}
+  ]
+}
+];
+
+// UNESCO GCG — all 6 key concepts. 13-15 band = full cognitive/social/behavioural outcomes.
+// Other bands = KEY IDEA line only (per agreed Option B). Blank where source is silent; never fabricated.
+const UNESCO = [
+{ id:1, title:"Climate Science", status:"full",
+  intro:"The science of climate and sustainability can be taught through stand-alone units and interdisciplinary projects. Explicit study units on climate science topics, as well as climate impacts on ecosystems and biodiversity, are essential so that students discuss these inter-related science-based issues with fluency, confidence, and a sense of agency.",
+  topics:[
+    {code:"1.1", title:"Weather, climate and climate change",
+     def:"'Weather' describes our daily experience of precipitation, wind, atmospheric temperature; 'climate' describes patterns over longer periods. Average temperatures of the lower atmosphere are rising (global warming). International agreements (UNFCCC, Paris Agreement, IPCC, COP) enable governments to consult on mitigation targets.",
+     bands:{
+      "5-8":{k:"'Weather' describes daily experience, while 'climate' describes weather patterns over many years."},
+      "9-12":{k:"Average global temperatures are increasing and extreme weather events more frequent."},
+      "13-15":{k:"Temperatures of the lower atmosphere have risen faster since industrialization, especially this century. Many countries seek to limit this increase to 1.5C (or under 2C). International agreements and institutions promote this goal, and many scientists research new technologies that can reduce global warming.",
+       c:["give some examples of how scientists collect weather data, including the temperature of the lower atmosphere.","demonstrate an understanding of the role of international action to address global warming.","describe recent IPCC temperature projections and assess the targets for limiting average global temperature rise to 1.5C (or less than 2C)."],
+       s:["appreciate the importance of monitoring weather patterns and climate trends through engaging in debates, discussions, and collaborative activities."],
+       b:["adopt more sustainable lifestyle choices such as including energy-saving practices in schools (e.g. turning off lights, using natural light)."]},
+      "16-18":{k:"Climate projections show global warming this century may exceed 1.5C or 2C. Increases in frequency and strength of extreme weather events are predicted, together with sea level rise and impacts on ecosystems."},
+      "18+":{k:"Scientific knowledge on climate change is increasing. New data may affect models and projections, suggesting greater urgency of action, with attention to climate justice."}
+     }},
+    {code:"1.2", title:"Greenhouse gases",
+     def:"The Earth's temperature is affected by naturally occurring GHGs which serve as a blanket. Without this 'greenhouse effect', Earth's average air temperature would be -18C instead of about 15C. Rising CO2 and other GHGs since industrialization correspond to rising global temperature.",
+     bands:{
+      "5-8":{k:"Sunshine heats the Earth's surface. GHGs such as CO2 in the air help to stop this heat being radiated into space."},
+      "9-12":{k:"GHGs from natural sources keep the Earth warm enough for life. However, extra CO2 from fossil fuels has an unwanted global warming effect."},
+      "13-15":{k:"GHGs include CO2, methane, and nitrous oxide, which absorb heat radiated from the earth's surface, creating a 'greenhouse effect.' Human activities have caused increases in these gases, as well as creating other gases not found naturally, leading to global warming. Action is needed to reduce emissions and increase CO2 capture by forests and other means.",
+       c:["demonstrate an understanding of Charles Keeling's findings on rising atmospheric CO2 levels and of CO2 measurements worldwide.","give other examples of where methane occurs naturally and how it is linked to various human activities, from cattle-raising to waste dumps.","compare major sources of different human-induced GHGs, in terms of how difficult it might be to reduce emissions, globally and/or in their own country."],
+       s:["appreciate the importance of trees, forests, and mangroves in removing CO2 from the air, while also understanding their various benefits to humans and their role as habitats.","reflect on their own commitment to environmental values and on how they and their families can be motivated to reduce greenhouse gas emissions."],
+       b:["raise awareness of GHGs, their sources, and effects, through interactions with family, whole school activities and in organizations to which they belong.","take personal actions or advocate to preserve or extend tree cover/forest/mangroves, and/or to reduce use of fossil fuels.","volunteer for local environmental organizations involved in activities such as tree planting, habitat restoration, or waste reduction efforts."]},
+      "16-18":{k:"The IPCC and many governments aim for 'net zero' human-induced CO2 emissions by mid-century. Other GHGs are included using the concept of 'CO2 equivalency.'"},
+      "18+":{k:"IPCC Working Group reports show factors influencing future climate and weather events, notably projected GHG levels. Remedial action is urgently needed."}
+     }},
+    {code:"1.3", title:"The carbon cycle",
+     def:"Life is carbon-based. The carbon cycle interchanges carbon compounds among the biosphere, atmosphere, lithosphere, soil, and hydrosphere. Industrialization has disturbed it, notably through fossil fuel use. Our 'carbon footprint' can be reduced through lifestyle changes and the circular economy.",
+     bands:{
+      "5-8":{k:"Life is carbon-based. During daylight hours, plants and plankton use CO2 from the air to help them grow."},
+      "9-12":{k:"Plant life removes carbon from the atmosphere through photosynthesis. Respiration returns CO2 to the air. Sea organisms' skeletons sink to the ocean floor and are stored for thousands of years."},
+      "13-15":{k:"In the natural carbon cycle, carbon flows between living organisms, air, oceans, soil and rocks, remaining for different lengths of time. Burning fossil fuels releases long-stored carbon as CO2; harvesting trees releases their carbon, so forest maintenance is needed to avoid net emission.",
+       c:["describe the natural carbon cycle.","compare the amounts of carbon dissolved in the ocean, stored in ocean floor rocks and sediments, fossil fuels, soil, and peat, and present in the atmosphere and living organisms.","describe key fossil fuels, their uses, impact on CO2 levels and associated pollution.","describe the role of the oceans in storing carbon and its movement within the thermohaline circulation.","consider the effects on sea life of increased acidity due to dissolved CO2.","research the effects of warming oceans on a particular kind of sea animal or plant, such as coral reefs."],
+       s:["appreciate the contributions of some global, national, local heroes of environmental action and aspire to follow in their footsteps.","value the natural environment and express the desire to preserve it for future generations, potentially citing role models such as Wangari Maathai, the Chipko activists and others.","express appreciation of volunteers and workers who undertake forest maintenance and act to prevent desertification.","appreciate the beauty of coral reefs and the biodiversity they support, and value efforts to protect or restore them."],
+       b:["raise awareness of the carbon cycle, including the role of oceans, through developing and sharing informative materials as a whole school activity and with family and community-based organizations.","organize or participate in events or initiatives that promote sustainable living, such as eco-friendly workshops, zero-waste challenges, or community clean-up efforts."]},
+      "16-18":{k:"The carbon cycle is the process whereby carbon compounds are interchanged among the biosphere, the atmosphere, the lithosphere, the soil and the hydrosphere."},
+      "18+":{k:"The carbon cycle can enable absorption of some human-related CO2 emissions, and new technologies for 'carbon capture' may help reduce people's 'carbon footprint.' Reducing emissions is still a priority."}
+     }},
+    {code:"1.4", title:"The water cycle",
+     def:"Global demand for fresh water is increasing. Water vapour condenses into clouds, precipitates as rain/snow/hail, and returns to the atmosphere by evaporation and transpiration. Global warming causes more evaporation and affects ocean circulation, leading to acidification, thermal expansion, ice melt and sea level rise.",
+     bands:{
+      "5-8":{k:"Water is important for humans, animals and plants. It falls from clouds as rain, snow, ice or hail and then enters groundwater/rivers/seas, returning to the air to form clouds."},
+      "9-12":{k:"Fresh water is key to human life, and its availability is affected by global warming in ways that vary between geographic regions, e.g. in deserts vs. downstream of shrinking glaciers."},
+      "13-15":{k:"The water cycle is affected by global warming, e.g. evaporation from oceans is increased. Weather patterns are affected by changing temperatures leading to more flooding and drought. The El Niño cycle in the Pacific Ocean affects weather patterns globally.",
+       c:["explain the natural water cycle of evaporation, condensation, sublimation, precipitation, transpiration, run-off and infiltration, and changes due to global warming, such as increased storms, flooding and drought.","measure rainfall and safely observe levels of rivers, wells, etc. in their home area, maintaining records.","explore and map their local water catchment area and its boundaries and interactions with other areas.","give a simple description of the oceanic (thermohaline) circulation, its effect on regional climates and its vulnerability to climate change.","cite evidence of how the El Niño cycle in the Pacific affects weather globally and in their region."],
+       s:["show concern for people affected by the impacts of global warming on the water cycle, recognizing the potential for increased storms, flooding, and drought.","develop emotional resilience for climate change's extreme weather by journaling emotions, role-playing community responses, and practicing adaptation strategies."],
+       b:["engage with local communities and organizations to raise awareness about the impact of global warming on the water cycle and collaborate on initiatives that promote water conservation, with special focus on vulnerable populations.","demonstrate the ability to adopt and promote behaviours that contribute to mitigating global warming, such as reducing their 'carbon footprint'."]},
+      "16-18":{k:"Fresh water is a scarce resource, dependent on the water cycle. Domestic water supplies often require treatment. Desalination can produce fresh water but requires energy, often from fossil fuels."},
+      "18+":{k:"Human-induced global warming has affected the water cycle. Competition over water and prolonged drought can fuel conflict and migration. Water-saving techniques include preventing over-use and avoiding pollution."}
+     }},
+    {code:"1.5", title:"Avoiding pollution and conserving resources",
+     def:"Pollution affects human health, Earth's climate and ecosystems. Stratospheric pollution with fluorine compounds can damage the ozone layer. Earth's resources are limited; Refuse, Re-use, Repair and Recycle (RRRR) can reduce pollution and save finite resources and energy.",
+     bands:{
+      "5-8":{k:"Human activity affects air quality and water quality. Littering affects quality of life, whereas RRRR reduces energy and resource use and pollution."},
+      "9-12":{k:"Pollution of air, water and soil threatens sustainability and can affect the climate. Conserving Earth's resources can also reduce energy use, e.g. through RRRR."},
+      "13-15":{k:"Chemicals, like fluorine compounds from refrigeration, harm the ozone layer, increasing UV radiation. The nitrogen cycle, while aiding crop growth via bacterial fixation, poses risks from fertilizer runoff, causing water pollution and ecological damage.",
+       c:["describe the ozone layer in the stratosphere and that it absorbs ultraviolet radiation, thereby protecting life on Earth.","distinguish damage to the ozone layer (caused e.g. by fluorine compounds) from the effects of GHGs which cause global warming by restricting radiation of heat from the Earth's surface.","explain the nitrogen cycle, including fixation of nitrogen by bacteria, and describe the adverse effects of fertiliser run-off into rivers.","explain the adverse consequences of nitrate conversion to nitrous oxide by bacteria, with increased particulate matter and potential ozone-layer damage.","consider ways of reducing nitrogen-related pollution (e.g. placing urea fertilizer deeper in soils to reduce run-off)."],
+       s:["show appreciation of international collaboration to restrict the use of gases that harm the ozone layer.","appreciate the interconnectedness between human activities and environmental well-being.","develop a sense of responsibility towards reduction of pollution.","express empathy for the impact of nitrogen pollution on aquatic ecosystems."],
+       b:["raise awareness of family and friends on the harmful effects of GHGs and of chemicals that thin the ozone layer.","support their school, local youth groups and/or other organizations in assessing harmful effects of nitrates and nitrous oxide, and in raising awareness of the potential harms associated with fertilizer use.","participate in community-based environmental projects, such as implementing sustainable farming practices or participating in local watershed protection initiatives."]},
+      "16-18":{k:"Pollution and waste can harm human health, damage ecosystems and increase global warming. Conserving resources through RRRR can reduce pollution directly and through lesser rates of waste-producing resource extraction."},
+      "18+":{k:"We can take action for pollution reduction and resource conservation at local, national and global levels. Responsibility for creating pollution rests on individuals, farms, and firms/organizations."}
+     }},
+    {code:"1.6", title:"Renewable energy",
+     def:"Progress towards renewable energy can provide a sense of hope. Modern lifestyles depend largely on fossil fuel combustion. Renewable sources include solar, wind, water, geothermal, and biomass. Nuclear power does not directly emit GHGs but is not classified as renewable, and creates long-lasting radioactive waste.",
+     bands:{
+      "5-8":{k:"Use of fossil fuels creates GHGs that can cause climate change. Fossil fuels are a finite resource. Renewable energy can be obtained from sunlight and the movements of wind and water, without producing GHGs."},
+      "9-12":{k:"Renewable energy can often replace the combustion of fossil fuels, and thus reduce greenhouse gas emissions."},
+      "13-15":{k:"Renewable energy resources include solar, wind, hydro, geothermal, tidal, wave and biomass. Electricity from nuclear power does not generate CO2, though radioactive waste needs disposal. Nuclear energy is not categorised as renewable since nuclear fuel is used up.",
+       c:["identify in simple terms the scientific basis of selected types of renewable energy (e.g. gravity for hydropower).","discuss the advantages and disadvantages of renewable energy sources (e.g. solar and wind power are intermittent) and match them to uses (e.g. solar for electricity and some heating).","critically analyse types of energy use in their home area in terms of renewability.","collect and analyse evidence on the extent to which particular types of biomass use in the area are sustainable."],
+       s:["make a commitment to supporting the development and use of renewable energy.","value remaining forests and trees and commit to restoring nature and to reducing the use of wood as fuel where this harms ecosystems and biodiversity."],
+       b:["engage in hands-on problem-solving challenges related to renewable energy, using critical thinking and creative solutions.","raise awareness of renewable energy options within the school, youth groups and other organizations, and online, including sharing video clips."]},
+      "16-18":{k:"Renewable energy technologies, together with better building design and insulation, can reduce the use of fossil fuels and help achieve 'net zero'."},
+      "18+":{k:"Increased energy efficiency and use of renewable energy are central to achieving 'net zero'."}
+     }}
+  ]
+},
+{ id:2, title:"Ecosystems and Biodiversity", status:"full",
+  intro:"Natural environments are the biodiversity of animals and plants, their relationships with each other and their interaction with natural elements such as soil, water, and sun. Humans are a humble part of nature and dependent on it. Education empowers learners to connect with nature through understanding land and ocean biodiversity, eco-anthropology, sustainable agronomy, and outdoor education.",
+  topics:[
+    {code:"2.1", title:"Natural environments: ecosystems and biodiversity (land and ocean)",
+     def:"Biodiversity is the variability among living organisms from all sources, including terrestrial, marine and other aquatic ecosystems. Learners understand and experience the richness of species and how they interact with each other and with elements such as climate or soil, forming an ecosystem. Knowledge of local ecosystems is key to encouraging conservation.",
+     bands:{
+      "5-8":{k:"Ecosystems are animals and plants in interaction with each other, as well as with land and weather."},
+      "9-12":{k:"Biodiversity is the variety of plants and animal life in the world/a particular habitat. It is also a broader notion to define nature in non-scientific discussions."},
+      "13-15":{k:"Ecosystems are based on interactions between species, and between species with their non-living environment.",
+       c:["describe how a variety of species in a given ecosystem helps it to recover its function when under stress.","describe how humans (and other animals) are ecosystems in themselves, with gut bacteria and viruses for instance.","identify and compare tools to identify and recognize microscopic diversity (e.g. microscopes, filters for marine plankton)."],
+       s:["appreciate the psychological benefits of taking care of plants.","appreciate how variability (in friends, food, entertainment) enriches their life, and is an analogy for the importance of diversity in ecosystems."],
+       b:["encourage beneficial species interactions, such as pollination by planting flowers or composting process."]},
+      "16-18":{k:"Ecosystems are based on fluxes of matter and energy between elements (weather, sun, soil) and biodiversity at various scales."},
+      "18+":{k:"Ecosystems are dynamic and complex natural systems that include biodiversity, abiotic elements and human activities."}
+     }},
+    {code:"2.2", title:"The evolution of biodiversity over time and in the future",
+     def:"Biodiversity is dynamic. Environmental changes induce species migration, extinction or speciation. Darwinism first theorized evolution via natural selection. Mass extinctions have been recorded in past geological times. Our current era can be coined the Anthropocene, as humans are now an important driver of biodiversity dynamics; we are entering the sixth mass extinction due to human activities.",
+     bands:{
+      "5-8":{k:"Some animals used to live on our planet and are now no longer here (such as dinosaurs)."},
+      "9-12":{k:"Biodiversity is dynamically linked with migration or adaptation."},
+      "13-15":{k:"Evolution of the species is based on environmental pressure that affects the survival of certain individuals. Some will reproduce and spread favourable characteristics to their offspring while others will be less successful.",
+       c:["explain and contrast the evolution of groups of species through time.","identify past mass extinctions.","define and critique the concept of Anthropocene.","experiment and observe the reproduction of plants or animals to understand the influence of the environment on reproductive traits and the concept of natural selection.","identify human-induced irreversible changes in their local natural environment that led to species extinction, and use this to advocate for changed human behaviour."],
+       s:["feel a connection with historical scientific discoveries and the life of scientists such as Darwin.","appreciate that Earth's biodiversity and ecosystems have resulted from evolution."],
+       b:["organize and participate in awareness campaigns within their schools or communities to educate peers about environmental pressures and their effects on biodiversity."]},
+      "16-18":{k:"Individuals best adapted to a specific ecosystem have more chance to reproduce and pass on genes, epigenomes, or behaviours. This leads to the appearance of new species and the extinction of others."},
+      "18+":{k:"Biodiversity patterns around the globe have been linked with global geological changes in the past."}
+     }},
+    {code:"2.3", title:"Ecosystems, biodiversity and ecosystem services",
+     def:"Biodiversity provides benefits (ecosystem services) crucial to sustain ecosystems, regulate climate, and meet human needs. Without healthy ecosystems, human populations are at risk. Only sustainable management can ensure survival across generations. Modern urban and industrial ways of living have sometimes depleted ecosystems; indigenous and traditional ways impact the natural environment less.",
+     bands:{
+      "5-8":{k:"We need nature for every kind of activity and natural resources are not infinite."},
+      "9-12":{k:"Biodiversity provides services humans depend on, and these services can be disrupted by human activity."},
+      "13-15":{k:"Ecosystem services can be degraded by human activity; sustainable management is needed to keep them functioning. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Human societies depend on ecosystem services; economic valuation and trade-offs become explicit."},
+      "18+":{k:"Sustainable management and use of ecosystems' services can ensure the survival of human populations from generation to generation."}
+     }},
+    {code:"2.4", title:"Human relation to nature: domestication and agriculture",
+     def:"Most land on Earth has domesticated biodiversity; humans have shaped landscapes for their benefit. Since the industrial revolution, agriculture has industrialized with mechanization and chemicals. This benefits food security but heavily affects biodiversity (soil pollution, pesticides, GHG emissions). Sustainable farming (permaculture, organic, agroforestry, small-scale) is more climate-resilient.",
+     bands:{
+      "5-8":{k:"The food we eat comes from plants and animals."},
+      "9-12":{k:"Farming transforms biodiversity."},
+      "13-15":{k:"Biodiversity and climate are essential for food production.",
+       c:["analyse the direct impact of climate conditions, including seasonal variations and extreme weather events, on food production processes.","explain the significance of biodiversity in food production, particularly the essential role of pollinators such as bees in the cultivation of fruits and vegetables.","evaluate the environmental consequences of industrial farming practices, including the emission of GHGs through pesticide and fertilizer use, overexploitation of soil, vast monocultures.","compare various farming methods (organic, small-scale, agroforestry, permaculture) in terms of their effects on biodiversity and climate resilience.","identify that food security is at risk around the globe due to biodiversity crisis and climate change impacts."],
+       s:["foster a sense of responsibility for the relationship between biodiversity, climate and food production."],
+       b:["take proactive steps towards environmentally-conscious food choices and lifestyle decisions.","undertake activities in their local community to increase pollinator diversity.","support or work with others in carrying out a local project of sustainable farming."]},
+      "16-18":{k:"Technologies can improve food production but can have negative impacts on biodiversity."},
+      "18+":{k:"Changes in agriculture can result from consumers' choices, collective actions and regulations."}
+     }},
+    {code:"2.5", title:"Human-induced biodiversity loss and its consequences",
+     def:"Human activities directly harm biodiversity: urbanization causes local extinctions and habitat loss; poaching and intensive fishing harm fauna and ocean ecosystems; globalization introduces invasive species; ocean acidification affects marine ecosystems; and pollution (land, water, air, noise, light) harms biodiversity, with consequences such as increased disease transmission from animals to humans.",
+     bands:{
+      "5-8":{k:"Human activities in cities or rural areas have direct impacts on biodiversity."},
+      "9-12":{k:"Pollution, invasive species, climate change, and human overexploitation collectively threaten biodiversity, contributing to ecological disruption and altering habitat conditions."},
+      "13-15":{k:"Globalization, climate change, and trade intensify pandemics, alter biodiversity, and harm ecosystems through invasive species, while poaching and intensive fishing devastate local fauna and marine life.",
+       c:["explain the detrimental impact of poaching on endangered species.","explore knock-on effects of the loss of cornerstone species in ecosystems, i.e. how one species struggles to survive without another.","describe the adverse effects of intensive and industrial fishing on marine ecosystems.","identify and advocate for sustainable fishing practices.","demonstrate the global spread of invasive species and how they disrupt ecosystems."],
+       s:["demonstrate increased awareness and care for animals that are endangered due to poaching.","feel inspired to take action to address poaching and overfishing.","tell local stories from First Nation/elders about the original ecosystems they lived in with native plants/animals."],
+       b:["participate in efforts for the reduction of poaching being undertaken by local/national/international organizations.","advocate for small-scale fishing and consume fish coming from sustainable fishing.","participate in local actions to reduce invasive species pressure.","take steps to implement adaptation projects that protect local ecosystems from the negative effects of climate change."]},
+      "16-18":{k:"The acidification of the ocean and increased water temperature negatively affect corals and marine ecosystems."},
+      "18+":{k:"Monitoring climate change impact on biodiversity, mitigation policies and global/local coordination around poaching and invasive species are important."}
+     }},
+    {code:"2.6", title:"Reconnecting to nature and protecting it",
+     def:"As a part of nature, humans need to show respect for and seek a stronger connection with nature, which contributes to positive mental health. Conservation biology analyses biodiversity status and the best ways to protect ecosystems. Conservation programmes around protected areas (national parks, marine reserves) are essential components of collective and political action.",
+     bands:{
+      "5-8":{k:"Human protection of nature is essential for the functioning of ecosystems."},
+      "9-12":{k:"There are strong and specific cultural connections between humans and the surrounding nature and animals."},
+      "13-15":{k:"There are protected natural places meant to reduce the pressure of human activities on wildlife; animals show great variation of intelligence and some species are social.",
+       c:["organize different categories of natural reserves in their country in terms of the amount of contact allowed between wildlife and human populations.","explain how connections between protected areas, such as wildlife corridors, are important.","analyse and visually present the structuration of protected areas with buffer zones and ecological transition zones.","explain and contrast how animals exhibit intelligence to fulfil their needs through behaviours such as using tools."],
+       s:["support the principle of protected natural places.","appreciate the ingenuity and cooperation found in certain animals and insects and reflect any similar qualities in the human species."],
+       b:["advocate for protection of natural places at the local/national/global levels.","take steps to care for the well-being of social insects in the local community, such as bee colonies."]},
+      "16-18":{k:"Climate change induces variations in inter-species interactions, and will have stronger consequences for biodiversity in the future."},
+      "18+":{k:"Strategies for influencing political decisions are important in the protection of biodiversity."}
+     }}
+  ]
+},
+{ id:3, title:"Climate Justice", status:"full",
+  intro:"Climate Justice addresses the underlying social, political, and economic drivers of the climate crisis and works to transform harmful power relations and systems of discrimination at the root of the disproportionate burden of climate risks borne by the marginalized (children, women, indigenous peoples, persons with disabilities, displaced people, SIDS, LDCs) who contributed least to the crisis.",
+  topics:[
+    {code:"3.1", title:"Contemporary manifestations",
+     def:"The burdens of climate change impacts are not equally shared. Some people and communities experience these impacts worse than others, even if they did little to contribute to climate change. Often, these people hold relatively less power and experience multiple forms of exclusion, discrimination, or oppression.",
+     bands:{
+      "5-8":{k:"Certain climate events and human activities impact different groups differently, leading to unequal treatment in coping with climate change."},
+      "9-12":{k:"Climate change disproportionately impacts certain groups who are less responsible for it and need more support."},
+      "13-15":{k:"The impacts of climate change can feel/be worse for people, communities, and countries with fewer means of preparing for, planning for, adapting to, responding to, or recovering from these impacts.",
+       c:["describe how some groups have relatively more power, choices, agency in the context of climate adaptation, and that this is unfair because it is largely determined by circumstances and structures, not merit.","evaluate how certain groups have relatively less power, choices, agency, and resources to cope or adapt, and explain how this is unjust because it is determined by poverty and inequalities.","describe how continued setbacks, disruptions, destruction, and crises can further exacerbate communities' climate vulnerability.","list the intersecting characteristics of groups in the country who are most to least vulnerable, explaining intersectionality.","differentiate between groups who knowingly persist in harmful actions and those who have no power or opportunity to pursue alternatives."],
+       s:["demonstrate empathy, compassion, and tolerance for those without power, choice, or opportunity to engage in alternative sustainable behaviours, while demonstrating intolerance for those who knowingly choose unsustainable behaviours or misinformation."],
+       b:["motivate others to demand those who knowingly perpetrate climate injustice be held accountable.","encourage climate decision-makers and voters to pursue positive actions that transform structural inequalities and systemic discrimination."]},
+      "16-18":{k:"While climate change impacts everyone, these impacts are compounded for those experiencing multiple intersecting forms of inequality, discrimination, and exclusion."},
+      "18+":{k:"Climate change compounds the effects of existing inequalities and injustices."}
+     }},
+    {code:"3.2", title:"Social determinants",
+     def:"Social determinants shape who is most exposed and vulnerable to climate impacts. Some people, communities and countries have less access to the knowledge, skills, technologies and jobs needed to strengthen their climate resilience and adaptive capacities.",
+     bands:{
+      "5-8":{k:"Some people have more or fewer resources to deal with climate impacts, which affects how they cope."},
+      "9-12":{k:"The circumstances that shape climate vulnerability are connected to social factors like income, location, and access to resources."},
+      "13-15":{k:"Some people, communities, and countries have less access to the knowledge, skills, technologies, and jobs necessary to strengthen their climate resilience, adaptive capacities, and green competencies.",
+       c:["point out the injustice in the unequal distribution of climate assets and climate risks, through the use of examples.","identify underlying causes of injustice in the unequal distribution of climate assets and climate risks.","develop potential solutions for overcoming obstacles to knowledge, skills, technologies, and jobs necessary to address climate risks."],
+       s:["demonstrate concern for those experiencing climate injustice, resistance towards actions that perpetuate it, and compassion towards those who engage in these actions."],
+       b:["translate their concerns about the structural dynamics of climate injustice into mediums and platforms that will inspire others to act collectively."]},
+      "16-18":{k:"Social determinants of climate injustice and vulnerability are perpetuated and reinforced by local, national, and international policies, systems, and structures designed to benefit those in power."},
+      "18+":{k:"Corporations and companies have contributed to and perpetuated climate injustice by focusing metrics of success on profit and growth that promote extractive processes."}
+     }},
+    {code:"3.3", title:"Historic economic and political processes",
+     def:"The unequal burden of climate change felt today has been shaped over centuries by economic and political processes including colonialism/imperialism, industrialization/capitalism, development/globalization, and conflict. These historical dynamics are further entrenched by modern manifestations of consumption, production, trade, and power.",
+     bands:{
+      "5-8":{k:"Human actions in the past have long-lasting positive or negative impacts up until the present day."},
+      "9-12":{k:"The circumstances that shape how some people today experience the worst impacts of climate change have been shaped by centuries of unfairness and discrimination."},
+      "13-15":{k:"Climate injustices today are closely related to long-standing environmental, social, and economic injustices committed by those who used their power for self-interest and self-benefit.",
+       c:["describe the environmental injustices perpetrated by those in power, and the economic, social, and political systems that have profited from these injustices.","suggest the resources needed to adapt to and cope with climate change that these injustices created across groups.","evaluate and explain how the rise of the modern economy benefited from a limitless growth mindset that drove economic actors to seek profit at all costs.","analyse systematically the economic and political systems that have brought us to this point in terms of climate change."],
+       s:["value practices and systems that pursue environmental and climate justice by promoting the redistribution of power from those who abuse it to those previously disenfranchised."],
+       b:["point out and condemn harmful systems and ways of thinking, being and doing that diminish the capacity of marginalized populations to adapt, cope with or reduce their exposure to climate hazards.","cooperate with others to identify actions that help to redistribute power in pursuit of climate justice."]},
+      "16-18":{k:"Climate injustice today is an extension of economic and political thinking and practices that have structured local and global social and economic inequalities across modern human history."},
+      "18+":{k:"Some of those who have benefited from history continue to harm marginalized groups today, making them more exposed to climate hazards or more vulnerable to their impacts."}
+     }},
+    {code:"3.4", title:"Transformed futures",
+     def:"A transformed future centred on climate justice requires action so that everyone can access and participate in alternative sustainable lifestyles and livelihoods. A greener and fairer future requires the achievement of equality, social inclusion, environmental and climate justice, and respect for human rights.",
+     bands:{
+      "5-8":{k:"Our climate actions today can make a positive difference for generations to come."},
+      "9-12":{k:"We all have a role to play in creating a greener, fairer, and more equal future, and this role looks different depending on who we are and how we experience the climate crisis."},
+      "13-15":{k:"To ensure a future centred on climate justice, action is needed to ensure everyone can access and participate in alternative sustainable lifestyles and livelihoods.",
+       c:["argue with evidence that to promote climate justice, actions must be taken to transition away from fossil fuels and from economic practices that promote extraction of natural resources for profit and growth."],
+       s:["reflect on the actions that can help provide marginalized populations with the means, resources, opportunities and choices to transition away from vulnerable lifestyles and/or high-emission livelihoods."],
+       b:["synthesize the evidence and articulate the arguments that demonstrate how the cost of transitioning to sustainable lifestyles may be different for marginalized people, communities and countries, and that these groups will need additional support in the interim."]},
+      "16-18":{k:"In order for climate solutions to not create new inequalities among people already likely to experience negative impacts, extra support will be required so these groups can also benefit from climate solutions."},
+      "18+":{k:"The achievement of gender equality, racial equality, social inclusion, and human rights are prerequisites to restoring the planet and to achieving climate justice."}
+     }}
+  ]
+},
+{ id:4, title:"Resilience-Building", status:"full",
+  intro:"Resilience-building in education builds learners' capacities to anticipate, absorb, accommodate and recover from the effects of climate change, shocks, and stressors. It entails understanding the socioemotional, social, economic, and political dynamics of climate change, and identifying constructive, adaptive, and equitable actions to navigate its risks.",
+  topics:[
+    {code:"4.1", title:"Social impacts of climate change",
+     def:"The social impacts of climate change touch health (heatwaves, waterborne disease), economy and jobs (especially weather-dependent ones like agriculture), mental health, and relationships (displacement fracturing families). Severity is not uniform: personal aspects like gender, race, or immigrant status, and where we live, amplify hardships.",
+     bands:{
+      "5-8":{k:"Weather patterns and climate affects us, our families and friends."},
+      "9-12":{k:"Climate change affects us, our schools and our communities, and diverse experiences of impacts are vital for building resilience."},
+      "13-15":{k:"Climate change affects everyone, but not everyone equally, and diverse experiences of climate impacts are vital for building resilient actions, plans and policies.",
+       c:["discuss the differential impacts of climate change, recognizing that vulnerable groups are disproportionately affected due to factors such as geography, gender, race, immigration status and socio-economic status.","explain the contributing factors to the unequal distribution of climate change impacts, including social determinants of health, economic disparities and systemic inequalities.","propose effective actions and policies that governments and leaders can implement to protect those most vulnerable, addressing equity and climate justice.","analyze the multifaceted consequences of climate change-induced migration and forced displacement, including impacts on health, livelihoods, cultural identity and social networks."],
+       s:["express solution-oriented thinking and attitudes.","envision their community as sustainable and resilient and develop hopeful attitudes towards the future.","feel greater confidence in their ability to influence decision-makers developing climate policies."],
+       b:["share with family and community members a systems-thinking approach to address the complexity of climate impacts and solutions.","identify and create solutions or policy interventions that alleviate the human suffering caused by climate impacts."]},
+      "16-18":{k:"Climate change has complex social implications, and there are opportunities for transformed futures through equitable solutions."},
+      "18+":{k:"There are complex climate impacts on society and opportunities for transformed futures."}
+     }},
+    {code:"4.2", title:"Navigating climate impacts: strategies for safety and resilience",
+     def:"As climate impacts intensify, embedding safety and resilience in education becomes crucial. This topic equips learners with skills to identify and mitigate risks, respond to emergencies (evacuation kits, accessing information during extreme weather), and develop comprehensive emergency plans and risk assessments to reduce vulnerabilities.",
+     bands:{
+      "5-8":{k:"There are simple safety behaviours we can learn for different weather and climate situations."},
+      "9-12":{k:"One can reduce harm through risk-reduction behaviour."},
+      "13-15":{k:"Emergency response plans help in preparing for emergencies; mitigation and adaptation strategies help in coping with climate change.",
+       c:["evaluate emergency response plans that are in place for the local region (if available).","discuss the role of emergency services and communication strategies for information during a climate disaster.","define climate change mitigation and adaptation, understand the differences between them, and explain how they are used to address climate disasters.","explain the link between climate change and increased frequency and severity of climate disasters, using evidence from scientific research and case studies.","identify, compare and assess various mitigation and adaptation strategies at individual, community, national and international levels."],
+       s:["exhibit taking responsibility and confidence in responding to extreme weather through participating in a group activity to develop a mock emergency response plan.","develop a commitment to mitigation and adaptation strategies and continuing to learn about new developments."],
+       b:["suggest improvements to emergency preparedness and response plans to school and community leaders.","create or share emergency preparedness plans with community (family, friends, online).","adopt pro-climate behaviours in schools and communities such as reducing single use plastic."]},
+      "16-18":{k:"Youth as community leaders can contribute to disaster risk reduction and community resilience."},
+      "18+":{k:"There are specific activities that we can undertake for emergency responses, risk reduction, mitigation and adaptation."}
+     }},
+    {code:"4.3", title:"Climate anxiety and constructive coping",
+     def:"Learning about or experiencing climate change can cause strong emotions (sadness, anger, worry, betrayal). These feelings are normal, so it is important to develop coping strategies: connecting with others, getting involved in community, mindfulness and self-care, and spending time in nature.",
+     bands:{
+      "5-8":{k:"It is important to express our climate emotions."},
+      "9-12":{k:"Our emotions can be complex around climate change and we can learn coping strategies to address climate change anxieties."},
+      "13-15":{k:"It is okay to share our complex climate emotions with others. There are strategies for supporting ourselves and others.",
+       c:["understand that it is normal to have climate anxiety or to feel intense emotions about climate uncertainties.","investigate constructive coping strategies (mindfulness, nature-connection, talking with others, getting involved in climate action).","analyse which constructive coping strategies work best for them and are relevant for the local/regional context."],
+       s:["develop empathy for themselves and other people who are experiencing complex climate emotions.","reflect on how climate emotions can motivate or hinder climate engagement or action.","recognize that climate action can build community and foster connections with others."],
+       b:["develop personal strategies for navigating complex climate emotions, such as climate grief or eco-anxiety, and for supporting others in doing the same.","present strategies (constructive coping) to help people and leaders move past barriers of climate inaction: distance, doom, dissonance, denial, identity."]},
+      "16-18":{k:"Climate anxiety presents an opportunity to better understand and manage our emotions."},
+      "18+":{k:"Fostering communities where open dialogue about climate anxiety is encouraged and members support one another is important."}
+     }},
+    {code:"4.4", title:"Strength in interconnectedness",
+     def:"As humans we are dependent on the natural world. Interconnectedness extends to the interdependence of diverse cultures and knowledge systems, including indigenous peoples. We build resilience when we understand that our cultures and built systems (agriculture, energy, economies, internet) are interconnected and dependent on the natural world.",
+     bands:{
+      "5-8":{k:"Humans and other living things are dependent on the natural world."},
+      "9-12":{k:"Humans, nature and 'built systems' are interconnected."},
+      "13-15":{k:"Our resilience depends on recognising the interconnection of natural, cultural and built systems. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Diverse cultures and knowledge systems, including indigenous knowledge, strengthen collective resilience."},
+      "18+":{k:"Recognising interconnectedness across natural, social and built systems builds resilience and the possibility for transformation."}
+     }},
+    {code:"4.5", title:"Urgency and community action",
+     def:"Climate change requires collective understanding of the urgency and need to act. Community action builds resilience, social cohesion and the capacity to influence decision-makers. Learners develop leadership and communication strategies for advocating robust climate action.",
+     bands:{
+      "5-8":{k:"We can take small actions together to help our community and environment."},
+      "9-12":{k:"Communities working together can respond to climate challenges."},
+      "13-15":{k:"Community action and advocacy can address the urgency of climate change. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Effective leadership and communication strategies help advocate for robust climate action, including framing arguments, leveraging media and influencing policy."},
+      "18+":{k:"Explaining complex climate issues in accessible ways for diverse audiences enables effective advocacy and community mobilisation."}
+     }},
+    {code:"4.6", title:"Tackling climate mis/disinformation",
+     def:"Vested interests finance, produce and amplify mis/mal/disinformation about climate change. Misinformation is false information not intended to harm; malinformation exaggerates truth to mislead (e.g. greenwashing); disinformation is false information intended to manipulate (e.g. climate denial). Social media both informs young people and spreads most mis/disinformation. Critical media literacy helps learners detect and investigate it.",
+     bands:{
+      "5-8":{k:"We learn from many different information sources, and we can ask questions to know whether to trust a source."},
+      "9-12":{k:"We can develop skills to evaluate whether climate information is reliable."},
+      "13-15":{k:"Critical media literacy skills help learners detect and investigate climate mis/mal/disinformation. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"We can identify organized efforts to sow doubt about climate science and delay action."},
+      "18+":{k:"We can analyze historical delays in climate policies, the role of industries in shaping them, and apply techniques for debunking misinformation."}
+     }}
+  ]
+},
+{ id:5, title:"Post-Carbon Economies", status:"full",
+  intro:"A post-carbon economy focuses on the economic impact of carbon dependence and climate change, aiming for sustainable development by incorporating environmental and societal considerations. Key areas include the circular economy, energy consumption and carbon emissions, and green finance. Various parties — individuals, businesses, governments, non-profits — play roles, and youth leadership is a driving force.",
+  topics:[
+    {code:"5.1", title:"Economic growth and development",
+     def:"There is an urgent call to reflect on the problems of the unlimited growth-centric model, in which many negative externalities in economic activities are overlooked. These externalities significantly impact social welfare and the environment. It is important to embed sustainability, equity and well-being within economic systems.",
+     bands:{
+      "5-8":{k:"Resources are essential for our life; scarcity is a feature of many resources. Growth is a process of increasing in size, amount, value, and significance."},
+      "9-12":{k:"Human life and development require natural resources; many resources are limited and not replaceable over a human lifetime."},
+      "13-15":{k:"There are many negative externalities in economic activities, which have a significant impact on social welfare and the environment.",
+       c:["present and compare examples of negative externalities such as pollution and carbon emissions, and explain why they are classified as negative externalities.","argue through the use of evidence that in negative externalities, economic activities of one party impose costs on another party (e.g. society, the environment) as an indirect effect."],
+       s:["reflect on their own economic activities from which negative externalities may stem.","value that all persons/groups should consider negative externalities in their economic activities."],
+       b:["advocate for sustainable practices and policies that reduce vulnerability to climate change impacts, both at individual and collective levels."]},
+      "16-18":{k:"Economic systems can be redesigned to embed sustainability, equity and well-being and to pursue the SDGs."},
+      "18+":{k:"Alternative economic models can meet present needs without sacrificing the ability of future generations to do the same."}
+     }},
+    {code:"5.2", title:"The circular economy and everyday life",
+     def:"In a circular economy, systems-focused sustainable materials management is employed in production, facilitating reuse of materials to keep their value longer. Resource consumption and waste can be reduced through superior product design and business models. The linear economy takes a 'take-make-waste' approach; the circular economy focuses on Reduce, Reuse, Recycle (and 4Rs/5Rs).",
+     bands:{
+      "5-8":{k:"We can give new life to used items and avoid waste."},
+      "9-12":{k:"The circular economy recognizes the limits of natural resources; the linear economy takes a 'take-make-waste' approach."},
+      "13-15":{k:"In a circular economy, we can play an active citizen role by exhibiting responsible circular behaviours throughout our consumption process.",
+       c:["describe different stages of the consumption process: purchase, use, and action at the end of the product life.","provide examples of circular behaviours during each stage of the consumption process (for example, upcycling an old broken drawer into an under-bed storage box).","advocate for the economic and environmental benefits of responsible circular behaviours."],
+       s:["enjoy the pleasure of giving new life to a used item."],
+       b:["explore and share with family and peers creative circular economy ideas (e.g. upcycling practices)."]},
+      "16-18":{k:"Producers' commitments to embed circular features in product design and consumers' preference for such products can help achieve better environmental outcomes."},
+      "18+":{k:"International cooperation and community awareness are important for advancing the circular economy."}
+     }},
+    {code:"5.3", title:"Climate change and our economies",
+     def:"Extreme weather events (heatwaves, storms, droughts, floods) are becoming more frequent and severe, with dramatic negative impacts on life and economic activities, causing fatalities and significant economic losses. Real-life examples introduce the topic, addressing both scale and scope.",
+     bands:{
+      "5-8":{k:"Different weather conditions can affect people's daily lives (e.g. availability of some products under certain weather conditions)."},
+      "9-12":{k:"Climate change-related extreme weather events can cause significant physical damage to assets/facilities."},
+      "13-15":{k:"Extreme weather events cause both direct and indirect economic costs across society and sectors. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Economic losses from climate-related events have both immediate and long-term dimensions requiring analysis."},
+      "18+":{k:"Understanding the scale and scope of economic impacts informs adaptation and mitigation investment decisions."}
+     }},
+    {code:"5.4", title:"Energy consumption and carbon emissions",
+     def:"Energy consumption and carbon emissions are among the most important determining factors in climate change, closely related to economic growth. It is essential to understand trends and patterns of energy consumption and carbon emissions. Market mechanisms (e.g. carbon trading) have been developed to reduce carbon emissions.",
+     bands:{
+      "5-8":{k:"Energy is required in everyday life."},
+      "9-12":{k:"There are two kinds of energy resources: non-renewable and renewable; renewable energy plays an important role in climate mitigation due to lower CO2 emissions."},
+      "13-15":{k:"Overall energy consumption has been continuously expanding, and there is global evidence that energy consumption leads to greater carbon emissions.",
+       c:["present and contrast trends of global energy consumption by using publicly available data sources.","describe the positive correlation between energy consumption and carbon emissions.","recognize that energy access plays an important role in economic growth, while high energy consumption can also lead to greater emissions that contribute to global warming."],
+       s:["assess and reflect on personal and family energy consumption behaviours."],
+       b:["discuss with their families their energy consumption behaviours and ways to reduce this consumption."]},
+      "16-18":{k:"Renewable energy capacity has been increasing rapidly at the global level, and one important driver is technological innovation."},
+      "18+":{k:"Green finance and carbon pricing are market-based mechanisms aimed at lowering carbon emissions."}
+     }},
+    {code:"5.5", title:"Our roles in a post-carbon economy",
+     def:"We all have roles and responsibilities in the transition to a post-carbon economy — as citizens, consumers, businesses, governments, regulators. It is important to identify our tasks and understand what behaviours can contribute to adaptation and mitigation. Technological and financial innovations and international cooperation are important success factors.",
+     bands:{
+      "5-8":{k:"Care for our environment will contribute to our individual and social well-being."},
+      "9-12":{k:"Our behaviours as buyers or users of products can help save energy and protect the environment."},
+      "13-15":{k:"Individuals can take an active role in the transition to a post-carbon economy through responsible behaviours and awareness. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Producers, consumers and communities all have roles; raising community awareness and recognising greenwashing matter."},
+      "18+":{k:"All members of society have a role to play in the transition to a post-carbon economy; technological and financial innovations and international cooperation are important."}
+     }}
+  ]
+},
+{ id:6, title:"Sustainable Lifestyles", status:"full",
+  intro:"A sustainable lifestyle means being conscious of how we interact with the world, recognizing how personal choices and systemic changes affect the planet, and finding ways for all living organisms to live better lives. It acknowledges that Earth's resources are finite. It does not mean reducing quality of life — it symbolizes feeling more fulfilled through contributing to a better world.",
+  topics:[
+    {code:"6.1", title:"Engagement with nature",
+     def:"Engagement with nature refers to spending time in green spaces and bringing nature into everyday life for the benefit of mental and physical well-being.",
+     bands:{
+      "5-8":{k:"Spending time in nature is good for us and helps us care for the natural world."},
+      "9-12":{k:"Regular engagement with nature supports our well-being and our connection to the environment."},
+      "13-15":{k:"Engagement with nature supports mental and physical well-being and motivates environmental care. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Access to green spaces has well-being and equity dimensions worth analysing."},
+      "18+":{k:"Nature-connection practices can be integrated into personal and professional life for well-being and sustainability."}
+     }},
+    {code:"6.2", title:"Renewable energy use",
+     def:"Renewable energy use refers to utilizing energy from natural sources replenished at a higher rate than consumed, without endangering the source. Renewable energy includes solar, wind, hydro, geothermal, ocean and bioenergy — effective alternatives to fossil fuels with their own merits and harms to nature, humanity and economy.",
+     bands:{
+      "5-8":{k:"There are different sources of renewable energy which exist naturally (solar, wind, hydro, geothermal, ocean, bioenergy) as an effective alternative to fossil fuels."},
+      "9-12":{k:"Different sources of energy are used in different parts of the world for different purposes."},
+      "13-15":{k:"Using renewable energy helps cut energy prices and reduce dependence on fossil fuels.",
+       c:["define and compare the concepts of efficiency, sufficiency, and stability through renewable energy sources.","discuss how renewable energy use could help drive environmental, social and economic sustainability.","critique unsustainable trends and systems of energy provision and consumption across the world.","research and contrast different strategies for reducing energy consumption in terms of social, economic, and ecological life."],
+       s:["discuss in a group about the value of renewable energy practices and actively listen to what others think.","appreciate cheap, reliable and affordable energy available from renewable sources.","express support for renewable domestic energy supply and decentralized energy systems for communities."],
+       b:["demonstrate strategies to achieve efficiency, sufficiency, and stability in energy use in daily life, such as by reviewing energy use in their school.","motivate others to use renewable energy and communicate how it reduces dependence on fossil fuels, e.g. by conducting campaigns or sharing online.","campaign for more efficient energy consumption by use of energy-friendly appliances and equipment."]},
+      "16-18":{k:"Policies and approaches for renewable energy use could reduce carbon emissions and lower the future risks of climate change."},
+      "18+":{k:"Increased energy efficiency and use of renewable energy are central to achieving 'net zero'."}
+     }},
+    {code:"6.3", title:"Responsible consumption",
+     def:"Responsible consumption aims to 'do better with less' and maintain well-being by reducing resource use. It involves distinguishing needs from wants, avoiding overconsumption, and understanding how individual choices influence climate and the planet's life-support systems.",
+     bands:{
+      "5-8":{k:"There is a difference between needs and wants; overconsumption has impacts."},
+      "9-12":{k:"Responsible consumption aims to 'do better with less' and maintain a level of well-being by reducing resource use."},
+      "13-15":{k:"There are various channels to promote responsible consumption (such as labels, campaigns, media, social networks, or educational programmes). Planned obsolescence increases the pressure on natural resources.",
+       c:["identify and compare different channels of influence for promoting responsible consumption.","analyse and reflect on their own engagement with various channels of communication, considering which might be used to promote responsible consumption.","explain what planned obsolescence is and how it is created, and research a case and develop a sustainable alternative."],
+       s:["appreciate the role of different channels in promoting responsible consumption.","self-question motivations to promote responsible consumption in their networks.","reflect critically on planned obsolescence and its contribution to environmental degradation."],
+       b:["make use of different channels to promote responsible consumption and encourage others to engage in everyday practices for responsible consumption.","take steps to rebalance their habits of using, buying and reusing products.","take initiatives to combat planned obsolescence in their multiple communities and networks."]},
+      "16-18":{k:"Various psychological, personal, and social factors influence consumer behaviours; unsustainable consumption is a root cause of the triple planetary crisis."},
+      "18+":{k:"There can be a gap between consumers' attitudes towards responsible consumption and their actual behaviours."}
+     }},
+    {code:"6.4", title:"Sustainable living spaces",
+     def:"Sustainable living spaces refer to homes, schools and communities designed and used in ways that reduce environmental impact — through energy efficiency, sustainable materials, green infrastructure and resource conservation.",
+     bands:{
+      "5-8":{k:"Our homes and schools can be made more environmentally friendly through simple actions."},
+      "9-12":{k:"Design and habits in our living spaces affect energy and resource use."},
+      "13-15":{k:"Sustainable design and habits in living spaces reduce environmental impact. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Building design, insulation and green infrastructure can substantially reduce a living space's footprint."},
+      "18+":{k:"Sustainable living spaces integrate energy-conserving design, materials and systems at building and community scale."}
+     }},
+    {code:"6.5", title:"Sustainable mobility",
+     def:"Sustainable mobility refers to travel and transport that minimizes environmental impact — through active travel (walking, cycling), public and shared transport, electric vehicles, and efficient logistics — while addressing accessibility, affordability and equity.",
+     bands:{
+      "5-8":{k:"Different ways of travelling have different impacts on the environment."},
+      "9-12":{k:"We can choose transport modes that reduce emissions."},
+      "13-15":{k:"Transport choices affect emissions, and sustainable mobility options can reduce our footprint. (13-15 detailed outcomes to be verified against source in next pass.)",
+       c:[],s:[],b:[]},
+      "16-18":{k:"Digitalization and AI can make transport more efficient and less polluting through automated mobility and intelligent traffic management."},
+      "18+":{k:"Integrated knowledge of travel, tourism and transport supports solutions for sustainable mobility, including green transport services."}
+     }},
+    {code:"6.6", title:"Sustainable diets",
+     def:"Sustainable diets refer to eating healthy, accessible, affordable, secure, local, and culturally relevant food produced in a way that reflects awareness of its impact on planet and people — rich in vegetables, fruits, whole grains, nuts, and legumes.",
+     bands:{
+      "5-8":{k:"Malnutrition and poor diets have physical and psychological effects on children's life; buying and eating local food is an important way of living sustainably."},
+      "9-12":{k:"Sustainable diets not only have a low environmental impact but are healthy and economical."},
+      "13-15":{k:"Sustainable eating involves selecting food that not only provides a balanced diet for the body but also facilitates the conservation of the environment.",
+       c:["explain how sustainable food is grown or produced in ways that promote healthiness as well as positive environmental and social impacts.","describe how individual habits of eating influence the climate and exhaust the planet's life support systems.","exemplify the main drivers and root causes of unsustainable diets at the individual, local, national and global levels.","analyse the environmental impacts of diets containing animal-products."],
+       s:["embrace the need of the planet for sustainable diets for ecological balance and conservation.","feel empathy with communities whose livelihoods are influenced by unsustainable food production.","self-monitor habits of meal planning, grocery shopping and daily cooking."],
+       b:["adjust their dietary habits to promote a sustainable lifestyle.","encourage others to engage in everyday practices for eating sustainably."]},
+      "16-18":{k:"Sustainable diets are guided by the principles of renewability, resilience, health, equity, diversity, inclusion and interconnectedness."},
+      "18+":{k:"Diets with low environmental impacts contribute to food and nutrition security and to healthy lives for present and future generations."}
+     }},
+    {code:"6.7", title:"Sustainable waste practices",
+     def:"Sustainable waste practices aim to minimize solid waste disposed of in landfills or through incineration. Avoiding and reducing waste generation is the first priority for maximizing efficiency, followed by reuse and, last, recycling.",
+     bands:{
+      "5-8":{k:"We can prolong the usage of materials and avoid improper waste disposal."},
+      "9-12":{k:"Sustainable waste practices aim to minimize the amount of solid waste that is disposed of in landfills or through incineration."},
+      "13-15":{k:"Avoiding and reducing the amount of waste generated is the first priority for maximizing efficiency and reducing waste.",
+       c:["critique and explain why avoiding and reducing the amount of waste is always a top priority.","research a recycling process in the local community and propose ways to improve it through greater reliance on reusing components before recycling."],
+       s:["criticize social and cultural norms that do not support sustainable waste practices.","prioritize avoiding or reducing waste generation.","acknowledge that recycling comes last after all other waste management procedures are practiced."],
+       b:["implement resource-saving/waste-reduction strategies at home, at school or at work.","contribute to decision-making processes about proper recycling as an environmental practice.","adjust their recycling habits to promote a sustainable lifestyle."]},
+      "16-18":{k:"Sustainable waste practices refer to reusing components of waste that still have environmental, economic, and artistic value."},
+      "18+":{k:"Waste avoidance, reuse and recycling can be advanced through system-level design and policy."}
+     }}
+  ]
+}
+];
+
+const MAPPING = [
+  {o:"1.1", u:["UNESCO 1.1","UNESCO 1.3","UNESCO 1.4","UNESCO 2.1"], note:"Earth-systems science: the weather/climate distinction, carbon cycle and water cycle are the direct content basis for explaining climate–Earth system interactions; ecosystems (2.1) add the biosphere component."},
+  {o:"1.2", u:["UNESCO 1.2","UNESCO 1.5","UNESCO 2.4"], note:"Human activity's effect on the climate system maps to greenhouse gases (direct causal mechanism), pollution/resource conservation, and agriculture's emissions (2.4)."},
+  {o:"1.3", u:["UNESCO 1.6","UNESCO 1.5","UNESCO 4.2"], note:"Mitigation and adaptation strategies map to renewable energy, resource conservation, and the safety/resilience strategies in 4.2."},
+  {o:"2.1", u:["UNESCO 1.1","UNESCO 1.2","UNESCO 4.6"], note:"Identifying reliable evidence connects to IPCC-projections content (1.1, 1.2) and to media-literacy/misinformation skills in 4.6."},
+  {o:"2.2", u:["UNESCO 1.1","UNESCO 1.4","UNESCO 5.4"], note:"Investigating with models and data connects to IPCC climate models (1.1), water-cycle/ocean-circulation modelling (1.4), and energy/emissions data trends (5.4)."},
+  {o:"2.3", u:["UNESCO 2.3","UNESCO 3.3","UNESCO 5.1"], note:"Integrating diverse/indigenous evidence sources aligns with ecosystem services (2.3), historical/political processes (3.3) and economic-externalities reasoning (5.1)."},
+  {o:"3.1", u:["UNESCO 4.6","UNESCO 6.3"], note:"Evaluating types of claims and misinformation aligns with 4.6 (mis/disinformation) and responsible-consumption channels/greenwashing (6.3)."},
+  {o:"3.2", u:["UNESCO 3.1","UNESCO 3.2","UNESCO 4.4"], note:"Diverse perspectives, values and worldviews map directly onto Climate Justice (3.1, 3.2) and interconnectedness of knowledge systems (4.4)."},
+  {o:"3.3", u:["UNESCO 4.5","UNESCO 4.3"], note:"Constructing arguments and 'discourse care' map to community-action advocacy (4.5) and the constructive-communication side of coping (4.3)."},
+  {o:"4.1", u:["UNESCO 3.4","UNESCO 5.1"], note:"Envisioning just, sustainable futures maps directly to Climate Justice 'transformed futures' (3.4) and to alternative economic models that meet present needs without compromising future generations (5.1)."},
+  {o:"4.2", u:["UNESCO 1.6","UNESCO 4.2","UNESCO 5.5"], note:"Formulating strategies and planning projects connects to renewable-energy planning (1.6), resilience/DRR planning (4.2), and roles in a post-carbon economy (5.5)."},
+  {o:"4.3", u:["UNESCO 4.3","UNESCO 5.5"], note:"Reflecting critically connects to self-reflection on climate emotions and engagement (4.3) and to evaluating one's own role and behaviours in a post-carbon economy (5.5). The GCG has no direct project-evaluation analogue, so these are the closest fits."}
+];
+
+const LEVEL_LABELS = ["L1 · Basic","L2 · Intermediate","L3 · Proficient","L4 · Advanced"];
+const BANDS = ["5-8","9-12","13-15","16-18","18+"];
+let currentQuad = "all";
+let currentBand = {};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function highlight(text, term){
+  if(!term) return esc(text);
+  const re = new RegExp("("+term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+  return esc(text).replace(re, "<mark>$1</mark>");
+}
+function matchesOecd(obj, term){
+  if(!term) return true;
+  const t = term.toLowerCase();
+  const hay = [obj.code, obj.title, obj.def, ...obj.levels.map(l=>l.d+" "+l.e)].join(" ").toLowerCase();
+  return hay.includes(t);
+}
+function matchesTopic(t, term){
+  if(!term) return true;
+  const q = term.toLowerCase();
+  let hay = [t.code, t.title, t.def].join(" ");
+  BANDS.forEach(b=>{ if(t.bands[b]) hay += " " + t.bands[b].k + " " + t.bands[b].c.join(" ") + " " + t.bands[b].s.join(" ") + " " + t.bands[b].b.join(" "); });
+  return hay.toLowerCase().includes(q);
+}
+
+function renderOecd(){
+  const term = document.getElementById('search').value.trim();
+  const container = document.getElementById('content-oecd');
+  container.innerHTML = "";
+  let anyMatch = false;
+  OECD.forEach(comp=>{
+    if(currentQuad !== "all" && String(comp.id) !== currentQuad) return;
+    const visibleSubs = comp.subs.filter(s => matchesOecd(s, term));
+    if(term && visibleSubs.length===0) return;
+    anyMatch = true;
+    const section = document.createElement('section');
+    section.className = "comp " + comp.class;
+    const head = document.createElement('div');
+    head.className = "comp-head";
+    head.innerHTML = `<span class="comp-num">C${comp.id}</span><span class="comp-title">${highlight(comp.title, term)}</span>`;
+    section.appendChild(head);
+    const intro = document.createElement('p');
+    intro.className = "comp-intro collapsed";
+    intro.innerHTML = highlight(comp.intro, term) + ' <span class="more">Read more ›</span>';
+    intro.addEventListener('click', ()=>{
+      intro.classList.toggle('collapsed');
+      const m = intro.querySelector('.more'); if(m) m.textContent = intro.classList.contains('collapsed') ? 'Read more ›' : 'Show less ‹';
+    });
+    section.appendChild(intro);
+    (term ? visibleSubs : comp.subs).forEach(sub=>{
+      const subEl = document.createElement('div');
+      subEl.className = "sub" + (term ? " open" : "");
+      subEl.id = "oecd-"+sub.code;
+      const subHead = document.createElement('div');
+      subHead.className = "sub-head";
+      subHead.innerHTML = `<div class="sub-title-row"><span class="sub-code">${sub.code}</span><span class="sub-title">${highlight(sub.title, term)}</span></div><span class="chev">›</span>`;
+      subHead.addEventListener('click', ()=> subEl.classList.toggle('open'));
+      subEl.appendChild(subHead);
+      const body = document.createElement('div');
+      body.className = "sub-body";
+      const inner = document.createElement('div');
+      inner.className = "sub-body-inner";
+      const map = MAPPING.find(m=>m.o===sub.code);
+      let chipsHtml = "";
+      if(map){
+        chipsHtml = '<div class="chips">' + map.u.map(x=>{
+          if(x.startsWith("UNESCO")){
+            const code = x.replace("UNESCO ","");
+            return `<span class="chip" data-jump="unesco-${code}">${x}</span>`;
+          }
+          return `<span class="chip" style="opacity:.6; cursor:default;">${x}</span>`;
+        }).join('') + '</div>';
+      }
+      let levelsHtml = '<div class="levels">';
+      sub.levels.forEach((lvl, i)=>{
+        levelsHtml += `<div class="level"><div class="level-label">${LEVEL_LABELS[i]}</div><div class="level-desc">${highlight(lvl.d, term)}</div>`;
+        if(lvl.e) levelsHtml += `<div class="level-ex"><b>Example — </b>${highlight(lvl.e, term)}</div>`;
+        levelsHtml += `</div>`;
+      });
+      levelsHtml += '</div>';
+      inner.innerHTML = `<p class="sub-def">${highlight(sub.def, term)}</p>` + chipsHtml + levelsHtml;
+      body.appendChild(inner);
+      subEl.appendChild(body);
+      section.appendChild(subEl);
+    });
+    container.appendChild(section);
+  });
+  document.getElementById('noMatchO').style.display = anyMatch ? "none" : "block";
+  container.querySelectorAll('.chip[data-jump]').forEach(c=>{
+    c.addEventListener('click', (e)=>{ e.stopPropagation(); jumpTo(c.getAttribute('data-jump')); });
+  });
+}
+
+function renderUnesco(){
+  const term = document.getElementById('usearch').value.trim();
+  const container = document.getElementById('content-unesco');
+  container.innerHTML = "";
+  let anyMatch = false;
+  UNESCO.forEach(kc=>{
+    if(kc.status === "pending"){
+      anyMatch = true;
+      const section = document.createElement('section');
+      section.className = "comp uc";
+      section.innerHTML = `<div class="comp-head"><span class="comp-num">KC${kc.id}</span><span class="comp-title">${esc(kc.title)}</span><span class="comp-pending">Coming next</span></div>
+        <div class="topic-list-pending">${kc.topics.map(t=>`<span class="topic-pill-pending">${esc(t)}</span>`).join('')}</div>`;
+      container.appendChild(section);
+      return;
+    }
+    const visibleTopics = kc.topics.filter(t => matchesTopic(t, term));
+    if(term && visibleTopics.length===0) return;
+    anyMatch = true;
+    const section = document.createElement('section');
+    section.className = "comp uc";
+    section.innerHTML = `<div class="comp-head"><span class="comp-num">KC${kc.id}</span><span class="comp-title">${highlight(kc.title, term)}</span></div>
+      <p class="comp-intro collapsed">${highlight(kc.intro, term)} <span class="more">Read more ›</span></p>`;
+    const introEl = section.querySelector('.comp-intro');
+    introEl.addEventListener('click', ()=>{
+      introEl.classList.toggle('collapsed');
+      const m = introEl.querySelector('.more'); if(m) m.textContent = introEl.classList.contains('collapsed') ? 'Read more ›' : 'Show less ‹';
+    });
+    (term ? visibleTopics : kc.topics).forEach(topic=>{
+      const key = kc.id+"-"+topic.code;
+      if(!(key in currentBand)) currentBand[key] = "13-15";
+      const topicEl = document.createElement('div');
+      topicEl.className = "sub" + (term ? " open" : "");
+      topicEl.id = "unesco-"+topic.code;
+      const head = document.createElement('div');
+      head.className = "sub-head";
+      head.innerHTML = `<div class="sub-title-row"><span class="sub-code">${topic.code}</span><span class="sub-title">${highlight(topic.title, term)}</span></div><span class="chev">›</span>`;
+      head.addEventListener('click', ()=> topicEl.classList.toggle('open'));
+      topicEl.appendChild(head);
+      const body = document.createElement('div');
+      body.className = "sub-body";
+      const inner = document.createElement('div');
+      inner.className = "sub-body-inner";
+      inner.innerHTML = `<p class="sub-def">${highlight(topic.def, term)}</p>
+        <div class="bandbar" data-key="${key}">${BANDS.map(b=>`<button class="bandbtn ${b===currentBand[key]?'active':''}" data-band="${b}">${b} yrs</button>`).join('')}</div>
+        <div class="banddisplay" data-key="${key}"></div>`;
+      body.appendChild(inner);
+      topicEl.appendChild(body);
+      section.appendChild(topicEl);
+      renderBand(inner, topic, currentBand[key], term);
+      inner.querySelectorAll('.bandbtn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          currentBand[key] = btn.getAttribute('data-band');
+          inner.querySelectorAll('.bandbtn').forEach(b=>b.classList.toggle('active', b===btn));
+          renderBand(inner, topic, currentBand[key], term);
+        });
+      });
+    });
+    container.appendChild(section);
+  });
+  document.getElementById('noMatchU').style.display = anyMatch ? "none" : "block";
+}
+
+function renderBand(inner, topic, band, term){
+  let disp = inner.querySelector('.banddisplay');
+  const d = topic.bands[band];
+  if(!d){ disp.innerHTML = '<p style="color:var(--ink-soft); font-size:13px;">No data for this band yet.</p>'; return; }
+  const hasDomains = (d.c && d.c.length) || (d.s && d.s.length) || (d.b && d.b.length);
+  const isTarget = (band === "13-15");
+  let inner_html = `<div class="keyidea"><b>Key idea — </b>${highlight(d.k, term)}</div>`;
+  if(hasDomains){
+    inner_html += `<div class="domains">
+      <div class="domain"><div class="domain-label">Cognitive</div><ul>${d.c.map(x=>`<li>${highlight(x,term)}</li>`).join('')}</ul></div>
+      <div class="domain"><div class="domain-label">Social &amp; emotional</div><ul>${d.s.map(x=>`<li>${highlight(x,term)}</li>`).join('')}</ul></div>
+      <div class="domain"><div class="domain-label">Behavioural</div><ul>${d.b.map(x=>`<li>${highlight(x,term)}</li>`).join('')}</ul></div>
+    </div>`;
+  } else if(isTarget){
+    inner_html += `<div class="verify-note"><i class="ti ti-info-circle" style="vertical-align:-2px; margin-right:6px;"></i>Full 13–15 outcome text for this topic is being verified against the source and will be added in a follow-up pass. The key idea above is exact.</div>`;
+  }
+  disp.innerHTML = inner_html;
+}
+
+function renderMapping(){
+  const rows = document.getElementById('mapRows');
+  rows.innerHTML = MAPPING.map(m=>{
+    const tags = m.u.map(x=>{
+      if(x.startsWith("UNESCO")){
+        const code = x.replace("UNESCO ","");
+        return `<span class="tag-unesco chip" data-jump="unesco-${code}">${x}</span>`;
+      }
+      return `<span class="tag-pending">${x}</span>`;
+    }).join('');
+    return `<tr><td><span class="tag-oecd chip" data-jump="oecd-${m.o}">OECD ${m.o}</span></td><td><div class="taglist">${tags}</div></td><td style="color:var(--ink-soft); font-size:12.8px;">${m.note}</td></tr>`;
+  }).join('');
+  rows.querySelectorAll('.chip[data-jump]').forEach(c=>{
+    c.addEventListener('click', ()=> jumpTo(c.getAttribute('data-jump')));
+  });
+}
+
+function jumpTo(id){
+  const isOecd = id.startsWith('oecd-');
+  const tab = isOecd ? 'oecd' : 'unesco';
+  document.querySelectorAll('.tabbtn').forEach(t=>t.classList.toggle('active', t.getAttribute('data-tab')===tab));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+tab));
+  setTimeout(()=>{
+    const el = document.getElementById(id);
+    if(el){ el.classList.add('open'); el.scrollIntoView({behavior:'smooth', block:'center'}); el.style.outline='2px solid var(--u-mid)'; setTimeout(()=>el.style.outline='',1500); }
+  }, 50);
+}
+
+document.querySelectorAll('.tabbtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabbtn').forEach(b=>b.classList.toggle('active', b===btn));
+    const tab = btn.getAttribute('data-tab');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+tab));
+  });
+});
+
+document.getElementById('search').addEventListener('input', renderOecd);
+document.getElementById('expandAllO').addEventListener('click', ()=>{ document.querySelectorAll('#content-oecd .sub').forEach(s=>s.classList.add('open')); });
+document.getElementById('collapseAllO').addEventListener('click', ()=>{ document.querySelectorAll('#content-oecd .sub').forEach(s=>s.classList.remove('open')); });
+document.getElementById('printBtn').addEventListener('click', ()=>{ document.querySelectorAll('.sub').forEach(s=>s.classList.add('open')); window.print(); });
+document.querySelectorAll('.wedge').forEach(w=>{
+  w.addEventListener('click', ()=>{
+    const q = w.getAttribute('data-q');
+    currentQuad = (currentQuad === q) ? "all" : q;
+    document.querySelectorAll('.quad-btn').forEach(b=> b.classList.toggle('active', b.getAttribute('data-q')===currentQuad));
+    renderOecd();
+  });
+});
+document.querySelectorAll('.quad-btn').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    currentQuad = b.getAttribute('data-q');
+    document.querySelectorAll('.quad-btn').forEach(x=> x.classList.toggle('active', x===b));
+    renderOecd();
+  });
+});
+document.getElementById('usearch').addEventListener('input', renderUnesco);
+document.getElementById('expandAllU').addEventListener('click', ()=>{ document.querySelectorAll('#content-unesco .sub').forEach(s=>s.classList.add('open')); });
+document.getElementById('collapseAllU').addEventListener('click', ()=>{ document.querySelectorAll('#content-unesco .sub').forEach(s=>s.classList.remove('open')); });
+
+renderOecd();
+renderUnesco();
+renderMapping();
+</script>
+</body>
+</html>
