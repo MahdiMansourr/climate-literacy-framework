@@ -1,1 +1,1 @@
-# climate-literacy-framework
+# Climate Literacy Framework
